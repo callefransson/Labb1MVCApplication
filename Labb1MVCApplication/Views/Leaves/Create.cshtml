@@ -1,0 +1,50 @@
+﻿@model Labb1MVCApplication.Models.Leave
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="display-5">Request leave</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Leave type</label>
+                <select asp-for="LeaveType" class="form-control" asp-items="ViewBag.LeaveTypes">
+                    <option value="">Select Leave Type</option>
+                    <option>Holiday leave</option>
+                    <option>Sick leave</option>
+                    <option>Paid leave</option>
+                    <option>Unpaid leave</option>
+                </select>
+                <span asp-validation-for="LeaveType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Start date</label>
+                <input asp-for="LeaveStartDate" class="form-control" />
+                <span asp-validation-for="LeaveStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">End date</label>
+                <input asp-for="LeaveEndDate" class="form-control" />
+                <span asp-validation-for="LeaveEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Choose employee</label>
+                <select asp-for="FkEmployeeId" class="form-control" asp-items="ViewBag.FkEmployeeId"></select>
+            </div>
+            <div class="form-group pt-2 pb-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

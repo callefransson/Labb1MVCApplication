@@ -1,0 +1,75 @@
+﻿@model Labb1MVCApplication.Models.SearchLeaveForEmployee
+@{
+    ViewData["Title"] = "Result";
+}
+
+<h1 class="display-4">Requested leaves for @Model.Employee.FirstName</h1>
+<hr/>
+<div class="row">
+
+    @if (Model.HasActiveLeave)
+    {
+        <table class="table">
+            @if(Model != null)
+            {
+                <thead>
+                    <tr>
+                        <th>
+                            Employee name
+                        </th>
+                        <th>
+                            Employee id
+                        </th>
+                            <th>
+                                Leave type
+                            </th>
+                        <th>
+                            Start date
+                        </th>
+                        <th>
+                            End date
+                        </th>
+                        <th>
+                            Time when leave was set
+                        </th>
+                    </tr>
+                 </thead>
+            }
+      
+            <tbody>
+                @foreach (var leave in Model.Employee.Leaves)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Employee.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Employee.EmployeeId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => leave.LeaveType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => leave.LeaveStartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => leave.LeaveEndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => leave.TimeWhenLeaveWasSet)
+                        </td>
+                     </tr>
+                }
+             </tbody>
+            
+        
+        </table>
+    }
+    else
+    {
+     <p>@Model.Employee.FirstName have no active leaves</p>
+    }
+    <div class="form-group mt-2">
+        <a asp-controller="SearchLeaveForEmployee" asp-action="Search" class="btn btn-primary">Return</a>
+    </div>
+</div>

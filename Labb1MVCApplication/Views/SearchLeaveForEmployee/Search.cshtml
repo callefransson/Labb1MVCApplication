@@ -1,0 +1,22 @@
+﻿@model Labb1MVCApplication.Models.Leave
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1 class="display-4">Search for employee</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Search">
+            <div class="form-group">
+                <label class="control-label">Choose employee</label>
+                <select name="id" class="form-control" asp-items="ViewBag.FkEmployeeId"></select>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Search" class="btn btn-primary" />
+                <a asp-controller="Employees" asp-action="Index" class="btn btn-primary">Back to list</a>
+            </div>
+        </form>
+    </div>
+</div>

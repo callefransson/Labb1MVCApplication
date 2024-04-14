@@ -1,0 +1,29 @@
+﻿@using System.Globalization
+@model Labb1MVCApplication.Models.FilterLeaveByDateModel
+@{
+    ViewData["Title"] = "Filter";
+}
+
+<h1 class="display-4">Filter leaves by month</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FilterDate">
+            <div class="form-group">
+                <label for="filterMonth" class="control-label">Choose a month:</label>
+                <select id="filterMonth" name="month" class="form-control">
+                    <option value="">-- Select Month --</option>
+                    @for (int i = 1; i <= 12; i++)
+                    {
+                        <option value="@i">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="FilterDate" class="btn btn-primary" />
+                <a asp-controller="Employees" asp-action="Index" class="btn btn-primary">Back to list</a>
+            </div>
+            <div class="text-danger mt-2">@Html.ValidationSummary(false)</div>
+        </form>
+    </div>
+</div>

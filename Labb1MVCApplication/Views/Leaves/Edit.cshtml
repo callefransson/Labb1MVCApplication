@@ -1,0 +1,51 @@
+﻿@model Labb1MVCApplication.Models.Leave
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="display-5">Edit leave for @ViewData["EmployeeName"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LeaveId" />
+            <div class="form-group">
+                <label asp-for="LeaveType" class="control-label">Leave type</label>
+                <select asp-for="LeaveType" class="form-control" asp-items="ViewBag.LeaveTypes">
+                    <option>Holiday leave</option>
+                    <option>Sick leave</option>
+                    <option>Paid leave</option>
+                    <option>Unpaid leave</option>
+                </select>
+                <span asp-validation-for="LeaveType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeaveStartDate" class="control-label">Start date</label>
+                <input asp-for="LeaveStartDate" class="form-control" />
+                <span asp-validation-for="LeaveStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeaveEndDate" class="control-label">End date</label>
+                <input asp-for="LeaveEndDate" class="form-control" />
+                <span asp-validation-for="LeaveEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FkEmployeeId" class="control-label">Employee name</label>
+                <select asp-for="FkEmployeeId" class="form-control" asp-items="ViewBag.FkEmployeeId"></select>
+                <span asp-validation-for="FkEmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-2">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

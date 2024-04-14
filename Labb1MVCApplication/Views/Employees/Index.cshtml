@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Labb1MVCApplication.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="display-5">List of all employees</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">Add new employee</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                First name
+            </th>
+            <th>
+                Last name
+            </th>
+            <th>
+                Birth date
+            </th>
+            <th>
+                Hire date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HireDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn btn-warning">Edit</a> 
+                    <a asp-action="Details" asp-route-id="@item.EmployeeId" class="btn btn-primary">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
